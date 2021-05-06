@@ -42,7 +42,7 @@ $failOnError     = $(Get-ActionInput "build-codedoc") -eq "true"
 
 # Initialize the builder script options,
 
-#configOption     = ""
+$configOption     = ""
 $toolsOption      = ""
 $installersOption = ""
 $codeDocOption    = ""
