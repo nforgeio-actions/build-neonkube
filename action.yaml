@@ -1,0 +1,64 @@
+#------------------------------------------------------------------------------
+# Builds a neonFORGE GitHub repo solution on a JOBRUNNER within the [C:\src] directory.
+#
+# This currently manages the following neonFORGE repos:
+#
+#   neonCLOUD           - private/enterprise code including deployment scripts
+#   neonKUBE            - public neonKUBE related code
+#   neonLIBRARY         - public neonLIBRARY related code
+#   cadence-samples     - public Cadence sample apps
+#   temporal-samples    - public Temporal sample apps
+#
+# REMARKS:
+#
+# This builds all projects in the RELEASE configuration and then builds any additional
+# requested artifacts like tools or code documentation.
+
+name: build
+description: "Builds one of the neonFORGE repos with options"
+inputs:
+  build-repo:
+    description: "Specifies the repostory to build, one of: neonCLOUD, neonKUBE, neonLIBRARY, cadence-samples, or temporal-samples"
+    required: true
+  build-branch:
+    description: "Specifies the build branch"
+    required: true
+  build-config: 
+    description: "Specifies the build configuration ('release' is hard-coded)"
+    required: false
+    default: "true"
+  build-tools:
+    description: "Indicates whether tools should be built and published to the repo's Build folder"
+    required: false
+    default: "false"
+  build-installers:
+    description: "Indicates whether installers should be built"
+    required: false
+    default: "false"
+  build-codedoc:
+    description: "Indicates whether code documentation should be built"
+    required: false
+    default: "false"
+  build-log:
+    description: "Specifies where the build log file should be written"
+    required: true
+  fail-on-error:
+    description: "Fail the activity step for build errors"
+    required: false
+    default: "false"
+outputs:
+  success: 
+    description: "Returns 'true' on success or 'false' on faiure"
+  build-branch:
+    description: "Returns as the repo branch built"
+  build-config:
+    description: "Returns as the build configuration"
+  build-commit:
+    description: "Returns as the git commit hash built"
+  build-commit-uri:
+    description: "Returns as the GitHub URI to the commit built"
+  build-log:
+    description: "Returns as the local path to the build log"
+runs:
+  using: node12
+  main: action.js
