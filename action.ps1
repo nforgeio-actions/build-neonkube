@@ -86,10 +86,10 @@ try
 
     # Set some output variables.
 
-    Set-ActionOutput "build-branch" $buildBranch
-    Set-ActionOutput "build-config" $buildConfig
-    Set-ActionOutput "build-log"    $buildLogPath
-    Set-ActionOutput "build-commit" $buildCommit
+    Set-ActionOutput "build-branch"      $buildBranch
+    Set-ActionOutput "build-config"      $buildConfig
+    Set-ActionOutput "build-log"         $buildLogPath
+    Set-ActionOutput "build-commit"      $buildCommit
     Set-ActionOutput "build-commit-uri" "https://github.com/$env:GITHUB_REPOSITORY/commit/$buildCommit"
 
     # Delete any existing build log file.
@@ -104,7 +104,7 @@ try
 
     # Perform the build.
 
-    & pwsh $buildScript $configOption $toolsOption $installersOption $codeDocOption >> $buildLogPath
+    pwsh $buildScript $configOption $toolsOption $installersOption $codeDocOption >> $buildLogPath
     ThrowOnExitCode
 }
 catch
