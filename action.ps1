@@ -104,7 +104,7 @@ try
 
     # Perform the build.
 
-    pwsh -NonInteractive -File $buildScript $configOption $toolsOption $installersOption $codeDocOption 2>&1 > $buildLogPath
+    pwsh -File $buildScript -NonInteractive $configOption $toolsOption $installersOption $codeDocOption 2>&1 > $buildLogPath
     ThrowOnExitCode
 }
 catch
